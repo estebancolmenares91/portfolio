@@ -1,125 +1,96 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Button from '../components/Button.astro';
-import Badge from '../components/Badge.astro';
-import Card from '../components/Card.astro';
-import CardHeader from '../components/CardHeader.astro';
-import CardTitle from '../components/CardTitle.astro';
-import CardDescription from '../components/CardDescription.astro';
-import CardContent from '../components/CardContent.astro';
-import CardFooter from '../components/CardFooter.astro';
+import SkipLink from '../view/SkipLink.astro';
+import Header from '../view/Header.astro';
+import Hero from '../view/Hero.astro';
+import Timeline from '../view/Timeline.astro';
+import Projects from '../view/Projects.astro';
+import Contact from '../view/Contact.astro';
+import Footer from '../view/Footer.astro';
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Esteban Colmenares',
+  jobTitle: 'Desarrollador Web & Mobile',
+  url: 'https://estebancolmenares.dev',
+  sameAs: [],
+  knowsAbout: [
+    'Angular',
+    'React',
+    'React Native',
+    'Flutter',
+    'Web Development',
+    'Mobile Development',
+  ],
+};
 ---
 
-<Layout title="Esteban Colmenares — Portfolio" description="Software engineer portfolio.">
-	<main class="mx-auto max-w-5xl px-6 py-20">
-		<section class="flex flex-col items-start gap-6">
-			<Badge variant="secondary">Available for new work</Badge>
-			<h1 class="text-4xl font-semibold tracking-tight sm:text-6xl">
-				Building thoughtful products<br />for the web.
-			</h1>
-			<p class="max-w-2xl text-lg text-muted-foreground">
-				Hi, I'm Esteban — a software engineer focused on craft, performance, and interfaces
-				that feel right. This portfolio runs on Astro, Tailwind v4, and shadcn design tokens.
-			</p>
-			<div class="flex flex-wrap gap-3">
-				<Button href="#projects">View projects</Button>
-				<Button variant="outline" href="#contact">Get in touch</Button>
-			</div>
-		</section>
+<Layout>
+  <SkipLink />
+  <Header />
 
-		<section id="projects" class="mt-24 flex flex-col gap-6">
-			<div class="flex items-baseline justify-between">
-				<h2 class="text-2xl font-semibold tracking-tight">Selected work</h2>
-				<Button variant="link" href="/projects">All projects &rarr;</Button>
-			</div>
+  <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
 
-			<div class="grid gap-6 sm:grid-cols-2">
-				<Card>
-					<CardHeader>
-						<CardTitle>Project Aurora</CardTitle>
-						<CardDescription>
-							A realtime dashboard for observability data.
-						</CardDescription>
-					</CardHeader>
-					<CardContent class="text-sm text-muted-foreground">
-						Built with React, WebSockets, and a custom canvas renderer for sub-frame
-						updates across thousands of metrics.
-					</CardContent>
-					<CardFooter class="gap-2">
-						<Badge>React</Badge>
-						<Badge variant="outline">WebSockets</Badge>
-						<Badge variant="secondary">Canvas</Badge>
-					</CardFooter>
-				</Card>
+  <main class="flex flex-col gap-16 pt-16 pb-24 select-none sm:gap-24 sm:pt-24 sm:pb-32">
+    <Hero />
+    <Timeline />
+    <Projects />
+    <Contact />
+  </main>
 
-				<Card>
-					<CardHeader>
-						<CardTitle>Lumen</CardTitle>
-						<CardDescription>
-							A static-first documentation platform.
-						</CardDescription>
-					</CardHeader>
-					<CardContent class="text-sm text-muted-foreground">
-						Authored in MDX, compiled to static HTML, with an island architecture for
-						interactive code samples and live previews.
-					</CardContent>
-					<CardFooter class="gap-2">
-						<Badge>Astro</Badge>
-						<Badge variant="outline">MDX</Badge>
-						<Badge variant="secondary">TypeScript</Badge>
-					</CardFooter>
-				</Card>
+  <Footer />
 
-				<Card>
-					<CardHeader>
-						<CardTitle>Atlas</CardTitle>
-						<CardDescription>
-							An offline-capable trip planner.
-						</CardDescription>
-					</CardHeader>
-					<CardContent class="text-sm text-muted-foreground">
-						Service worker, IndexedDB storage, and vector tile rendering make it fully
-						functional with no network connection.
-					</CardContent>
-					<CardFooter class="gap-2">
-						<Badge>PWA</Badge>
-						<Badge variant="outline">IndexedDB</Badge>
-						<Badge variant="secondary">Maps</Badge>
-					</CardFooter>
-				</Card>
+  <script>
+    const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('.nav-link'));
+    const sections = links
+      .map((link) => document.querySelector<HTMLElement>(link.getAttribute('href')!))
+      .filter((s): s is HTMLElement => s !== null);
 
-				<Card>
-					<CardHeader>
-						<CardTitle>Forge CLI</CardTitle>
-						<CardDescription>
-							A batteries-included build toolkit.
-						</CardDescription>
-					</CardHeader>
-					<CardContent class="text-sm text-muted-foreground">
-						Pluggable pipeline, smart caching, and first-class TypeScript support. Ships
-						a single binary with no runtime dependencies.
-					</CardContent>
-					<CardFooter class="gap-2">
-						<Badge>Rust</Badge>
-						<Badge variant="outline">CLI</Badge>
-						<Badge variant="secondary">Open source</Badge>
-					</CardFooter>
-				</Card>
-			</div>
-		</section>
+    function setActive(id: string | null) {
+      links.forEach((link) => {
+        if (link.getAttribute('href') === `#${id}`) {
+          link.setAttribute('aria-current', 'true');
+        } else {
+          link.removeAttribute('aria-current');
+        }
+      });
+    }
 
-		<section id="contact" class="mt-24 flex flex-col gap-4">
-			<h2 class="text-2xl font-semibold tracking-tight">Let's talk</h2>
-			<p class="max-w-xl text-muted-foreground">
-				Have a project in mind or just want to say hi? I'm always open to interesting work
-				and good conversations.
-			</p>
-			<div class="flex gap-3">
-				<Button href="mailto:hello@example.com">Email me</Button>
-				<Button variant="ghost" href="https://github.com" target="_blank" rel="noopener">
-					GitHub
-				</Button>
-			</div>
-		</section>
-	</main>
+    function update() {
+      const threshold = window.innerHeight * 0.45;
+      let current: string | null = null;
+
+      for (const section of sections) {
+        if (section.getBoundingClientRect().top <= threshold) {
+          current = section.id;
+        }
+      }
+
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 8) {
+        current = sections[sections.length - 1].id;
+      }
+
+      setActive(current);
+    }
+
+    if (sections.length > 0) {
+      let ticking = false;
+      window.addEventListener(
+        'scroll',
+        () => {
+          if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(() => {
+              update();
+              ticking = false;
+            });
+          }
+        },
+        { passive: true },
+      );
+      window.addEventListener('resize', update);
+      update();
+    }
+  </script>
 </Layout>

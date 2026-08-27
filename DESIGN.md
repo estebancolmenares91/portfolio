@@ -1,6 +1,6 @@
 # DESIGN.md — Sistema de diseño del portafolio
 
-> Portafolio profesional de **Esteban Colmenares — Mobile Developer (+3 años)**.
+> Portafolio profesional de **Esteban Colmenares — Desarrollador Web & Mobile (+3 años)**.
 > Stack: Astro 7 · Tailwind v4 · tokens shadcn (base `neutral`) · React 19 · JetBrains Mono (títulos) + Inter (cuerpo).
 
 ---
@@ -101,7 +101,7 @@ Cargar ambas con `@font-face` local (`font-display: swap`). Registrar en Tailwin
 
 ## 4. Espacio y layout
 
-- Unidad base: **4px** (escala Tailwind). Gap entre componentes: 12–24px. Ritmo vertical entre secciones: 64–96px (`mt-16`/`mt-24`).
+- Unidad base: **4px** (escala Tailwind). Gap entre componentes: 12–24px. Ritmo vertical entre secciones: 64–96px (`gap-16`/`gap-24` en `main`, sin padding+margin duplicados). El espacio vacío del layout no es seleccionable (`select-none` en `main`, `select-text` en cada sección).
 - Contenedor: `mx-auto max-w-3xl px-6` para prosa/hero; `max-w-5xl` solo para el grid de proyectos.
 - **Mobile-first:** una columna siempre; el grid de proyectos pasa a 2 columnas en `sm:` como máximo. Sin layouts de 3+ columnas.
 - Bordes redondeados: `--radius: 0.625rem`. Cards `rounded-lg`, botones/badges `rounded-md`. Coherencia total: no mezclar radios.
@@ -113,10 +113,10 @@ Cargar ambas con `@font-face` local (`font-display: swap`). Registrar en Tailwin
 
 Orden fijo, una sola página, navegación por anclas:
 
-1. **Header** (sticky, opcional): monograma en JetBrains Mono (`EC.`), anclas (Work / Stack / Contact) y `ThemeToggle`. Altura ≤ 56px, fondo `--background` con `border-b`.
-2. **Hero:** badge de disponibilidad (`secondary`), H1 de una línea con quiebre, párrafo de 2 líneas máx. presentándose como *Mobile Developer, +3 años enviando apps a producción*, y dos CTAs: primario "Ver proyectos" + outline "Contacto". Sin imagen ni ilustración.
-3. **Selected work:** encabezado con título + link "Todos los proyectos". Grid `sm:grid-cols-2 gap-6` con **máximo 4 cards**. Cada card: título, descripción de 1 línea, detalle de 2 líneas, y 2–3 badges de stack (React Native / Swift / Kotlin / Flutter según el caso). Nada de screenshots gigantes; si hay imagen, thumbnail sobrio con borde.
-4. **Stack / experiencia:** lista compacta (no grid de logos): 3 filas — *Plataformas*, *Lenguajes*, *Herramientas* — con micro-etiquetas JetBrains Mono a la izquierda y texto `text-sm` a la derecha. Opcional: una línea de experiencia "+3 años · N apps en producción".
+1. **Header** (sticky, opcional): monograma en JetBrains Mono (`EC.`), anclas (Trayectoria / Trabajo / Contacto) y `ThemeToggle`. Altura ≤ 56px, fondo `--background` con `border-b`.
+2. **Hero:** H1 de una línea con quiebre, párrafo de 2 líneas máx. presentándose como *desarrollador web y móvil, +3 años enviando producto a producción*, y dos CTAs: primario "Ver proyectos" + outline "Contacto". Sin imagen ni ilustración. **Sin badges de estado/disponibilidad** ("Disponible para nuevos proyectos", "Open to work"): son genéricos de plantilla; la disponibilidad se comunica con el texto de la sección Contacto si hace falta.
+3. **Trayectoria:** timeline vertical compacto (`<ol>` con divisores): cada entrada lleva rango de fechas en micro-etiqueta JetBrains Mono a la izquierda, rol + empresa como H3 y resumen `text-sm leading-relaxed`. Máximo 3 entradas (2 trabajos + formación). Al cierre, una micro-etiqueta con idiomas. Las herramientas no se repiten en una sección de stack: ya las muestran los badges de cada proyecto.
+4. **Selected work:** encabezado con título + link "Todos los proyectos". Grid `sm:grid-cols-2 gap-6` con **máximo 4 cards**. Cada card: título, descripción de 1 línea, detalle de 2 líneas, y 2–3 badges de stack (Angular / React Native / Expo / Flutter / Node.js según el caso). Nada de screenshots gigantes; si hay imagen, thumbnail sobrio con borde.
 5. **Contact:** H2, una frase, botones Email (primario) + GitHub/LinkedIn (ghost). Sin formulario.
 6. **Footer:** una línea, `text-xs text-muted-foreground`, año + "Hecho con Astro".
 
@@ -124,7 +124,7 @@ Orden fijo, una sola página, navegación por anclas:
 
 - Todo el contenido visible sin scroll horizontal, en cualquier ancho.
 - Máximo 2 CTAs primarios por página.
-- Cada sección responde a una pregunta: *quién soy → qué hago → con qué → cómo contactarme*.
+- Cada sección responde a una pregunta: *quién soy → dónde trabajé → qué hago → cómo contactarme*.
 - Texto en **español**, `lang="es"` en el `<html>`.
 
 ---
@@ -133,7 +133,7 @@ Orden fijo, una sola página, navegación por anclas:
 
 - **Button:** variantes permitidas: `default` (primario, acento), `outline`, `ghost`, `link`. Altura ≥ 40px, targets táctiles reales ≥ 44px. Hover: lightness +0.03 o fondo `--muted`. Transición `150ms`.
 - **Card:** `bg-card border border-border rounded-lg`. Padding interno 20–24px. Hover sutil: `border-foreground/20`. Sin elevación al hover.
-- **Badge:** solo variantes `default` / `outline` / `secondary`, `text-xs`. Máximo 3 por card.
+- **Badge:** solo variantes `default` / `outline` / `secondary`, `text-xs`. Máximo 3 por card. **Nunca usar `default` (color de acento) en cards de proyecto**: el acento está reservado para CTAs y links (ver §2). En cards, todos los badges van en `outline` para no competir visualmente con los botones primarios.
 - **ThemeToggle:** persiste en `localStorage`, respeta `prefers-color-scheme`, script inline anti-FOUC ya presente en `Layout.astro`.
 ### Iconos e imágenes
 
@@ -193,6 +193,8 @@ Orden fijo, una sola página, navegación por anclas:
 | Más de dos fuentes | JetBrains Mono (títulos) + Inter (cuerpo) |
 | Secciones full-screen / scrolljacking | Layout compacto de una columna |
 | Emojis como iconos de UI | lucide-react |
+| Badges de estado/disponibilidad en el hero ("Available", "Open to work") | Texto plano en Contacto |
+| Badges decorativos sin dato real | Badges solo para el stack de cada proyecto (máx. 3 por card) |
 
 ---
 

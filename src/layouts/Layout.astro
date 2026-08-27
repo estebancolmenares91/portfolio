@@ -1,6 +1,5 @@
 ---
 import '../styles/global.css';
-import ThemeToggle from '../components/ThemeToggle';
 
 interface Props {
   title?: string;
@@ -8,20 +7,43 @@ interface Props {
 }
 
 const {
-  title = 'Esteban Colmenares — Portfolio',
-  description = 'Personal portfolio of Esteban Colmenares.',
+  title = 'Esteban Colmenares — Desarrollador Web & Mobile',
+  description =
+    'Esteban Colmenares, desarrollador con +3 años construyendo apps web y móviles con Angular, React, React Native y Flutter.',
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL('/og-image.png', Astro.site);
 ---
 
 <!doctype html>
-<html lang="en" suppressHydrationWarning>
+<html lang="es" suppressHydrationWarning>
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content={description} />
+		<meta name="robots" content="index, follow" />
+		<link rel="canonical" href={canonicalURL} />
+		<link rel="sitemap" href="/sitemap-index.xml" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
+
+		<!-- Open Graph -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:locale" content="es_ES" />
+		<meta property="og:site_name" content="Esteban Colmenares" />
+
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImage} />
+
 		<title>{title}</title>
 		<script is:inline>
 			(function () {
@@ -36,6 +58,5 @@ const {
 	</head>
 	<body class="bg-background text-foreground antialiased">
 		<slot />
-		<ThemeToggle client:load />
 	</body>
 </html>

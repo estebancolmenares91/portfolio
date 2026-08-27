@@ -1,12 +1,17 @@
 ---
+import { ArrowDown, ArrowRight, ArrowUpRight } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
+
 type Variant = 'default' | 'outline' | 'secondary' | 'ghost' | 'destructive' | 'link';
 type Size = 'sm' | 'default' | 'lg' | 'icon';
+type IconName = 'arrow-down' | 'arrow-right' | 'arrow-up-right';
 
 interface Props {
   variant?: Variant;
   size?: Size;
   href?: string;
   type?: 'button' | 'submit' | 'reset';
+  icon?: IconName;
   class?: string;
 }
 
@@ -15,12 +20,21 @@ const {
   size = 'default',
   href,
   type = 'button',
+  icon,
   class: className = '',
   ...rest
 } = Astro.props;
 
+const icons: Record<IconName, LucideIcon> = {
+  'arrow-down': ArrowDown,
+  'arrow-right': ArrowRight,
+  'arrow-up-right': ArrowUpRight,
+};
+
+const Icon = icon ? icons[icon] : null;
+
 const base =
-  'inline-flex shrink-0 items-center justify-center gap-2 rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:translate-y-px disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*=\'size-\'])]:size-4';
+  'group inline-flex shrink-0 items-center justify-center gap-2 rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all motion-reduce:transition-none outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:translate-y-px disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*=\'size-\'])]:size-4';
 
 const variants: Record<Variant, string> = {
   default: 'bg-primary text-primary-foreground hover:bg-primary/80',
@@ -36,7 +50,7 @@ const variants: Record<Variant, string> = {
 
 const sizes: Record<Size, string> = {
   sm: 'h-8 rounded-md px-3 text-xs',
-  default: 'h-9 px-4 py-2',
+  default: 'h-10 px-5 py-2',
   lg: 'h-10 rounded-md px-6',
   icon: 'size-9',
 };
@@ -48,10 +62,12 @@ const classes = `${base} ${variants[variant]} ${sizes[size]} ${className}`;
   href ? (
     <a href={href} class={classes} {...rest}>
       <slot />
+      {Icon && <Icon aria-hidden="true" strokeWidth={1.9} className="transition-transform duration-150 motion-reduce:transition-none motion-safe:group-hover:translate-y-0.5" />}
     </a>
   ) : (
     <button type={type} class={classes} {...rest}>
       <slot />
+      {Icon && <Icon aria-hidden="true" strokeWidth={1.9} className="transition-transform duration-150 motion-reduce:transition-none motion-safe:group-hover:translate-y-0.5" />}
     </button>
   )
 }
