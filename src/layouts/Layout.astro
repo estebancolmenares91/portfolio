@@ -1,6 +1,5 @@
 ---
 import '../styles/global.css';
-import ThemeToggle from '../components/ThemeToggle';
 
 interface Props {
   title?: string;
@@ -8,13 +7,14 @@ interface Props {
 }
 
 const {
-  title = 'Esteban Colmenares — Portfolio',
-  description = 'Personal portfolio of Esteban Colmenares.',
+  title = 'Esteban Colmenares — Desarrollador Web & Mobile',
+  description =
+    'Esteban Colmenares, desarrollador con +3 años construyendo apps web y móviles con Angular, React, React Native y Flutter.',
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" suppressHydrationWarning>
+<html lang="es" suppressHydrationWarning>
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -36,6 +36,5 @@ const {
 	</head>
 	<body class="bg-background text-foreground antialiased">
 		<slot />
-		<ThemeToggle client:load />
 	</body>
 </html>

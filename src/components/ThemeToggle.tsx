@@ -30,15 +30,14 @@ export default function ThemeToggle() {
     <button
       type="button"
       onClick={toggle}
-      aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-      className="group/button fixed top-4 right-4 z-50 inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-border bg-background text-foreground shadow-sm transition-all outline-none hover:bg-muted focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+      aria-label={theme === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
+      className="inline-flex size-10 shrink-0 items-center justify-center rounded-lg border border-border bg-background text-foreground transition-all outline-none hover:bg-muted focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
     >
       {mounted && theme === 'dark' ? (
         <Sun className="size-4" aria-hidden="true" />
       ) : (
         <Moon className="size-4" aria-hidden="true" />
       )}
-      <span className="sr-only">Toggle theme</span>
     </button>
   );
 }

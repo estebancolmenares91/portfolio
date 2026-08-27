@@ -8,118 +8,206 @@ import CardTitle from '../components/CardTitle.astro';
 import CardDescription from '../components/CardDescription.astro';
 import CardContent from '../components/CardContent.astro';
 import CardFooter from '../components/CardFooter.astro';
+import ThemeToggle from '../components/ThemeToggle';
+
+const year = new Date().getFullYear();
+
+const projects = [
+  {
+    title: 'App universitaria',
+    description: 'App móvil institucional (iOS y Android) para la comunidad universitaria.',
+    detail:
+      'Migrada de JS a TypeScript con Expo Router, SWR y migración de stylesheets a Tailwind en el rebranding. El binario bajó de ~35 MB a ~13 MB tras podar assets y dependencias.',
+    stack: ['React Native', 'Expo', 'TypeScript'],
+  },
+  {
+    title: 'Inscripciones',
+    description: 'Módulo de inscripciones para +8.000 estudiantes por trimestre.',
+    detail:
+      'Frontend en Angular 16 dentro de un sistema universitario grande, con equipos de QA y backend y decenas de puestos operando en paralelo sin conflictos.',
+    stack: ['Angular', 'TypeScript'],
+  },
+  {
+    title: 'Tickets QR',
+    description: 'Control de acceso con QR para eventos privados de la universidad.',
+    detail:
+      'Escaneo con cámara, verificación de la entrada y registro de consumo en el momento.',
+    stack: ['React Native', 'Expo', 'Tailwind'],
+  },
+  {
+    title: 'DOMOTAI',
+    description: 'Gestión de inventario y clientela para domótica.',
+    detail:
+      'Full stack: dashboard web, API en Node.js y app móvil en Flutter.',
+    stack: ['Flutter', 'Node.js', 'React'],
+  },
+];
+
+const timeline: { period: string; title: string; detail?: string }[] = [
+  {
+    period: 'Dic 2025 — Hoy',
+    title: 'Full-stack Developer · DOMOTAI',
+    detail:
+      'Dashboard web y API en Node.js para gestión de inventario y clientela, con app móvil en Flutter.',
+  },
+  {
+    period: 'Feb 2023 — Ago 2026',
+    title: 'Frontend & Mobile Developer · Servicios Educativos (SERVIEDUCA)',
+    detail:
+      'Producto universitario en web y móvil: portal responsivo en Angular, app institucional en React Native + Expo (migración a TS, rebranding, ~35 MB → ~13 MB) y módulo de inscripciones para +8.000 estudiantes por trimestre. Lideré la migración del sistema de preinscripciones de Angular 16 a 21 con zoneless.',
+  },
+  {
+    period: 'Hasta Nov 2023',
+    title: 'Ingeniería en Informática · Universidad Rafael Belloso Chacín (URBE)',
+  },
+];
 ---
 
-<Layout title="Esteban Colmenares — Portfolio" description="Software engineer portfolio.">
-	<main class="mx-auto max-w-5xl px-6 py-20">
-		<section class="flex flex-col items-start gap-6">
-			<Badge variant="secondary">Available for new work</Badge>
-			<h1 class="text-4xl font-semibold tracking-tight sm:text-6xl">
-				Building thoughtful products<br />for the web.
-			</h1>
-			<p class="max-w-2xl text-lg text-muted-foreground">
-				Hi, I'm Esteban — a software engineer focused on craft, performance, and interfaces
-				that feel right. This portfolio runs on Astro, Tailwind v4, and shadcn design tokens.
-			</p>
-			<div class="flex flex-wrap gap-3">
-				<Button href="#projects">View projects</Button>
-				<Button variant="outline" href="#contact">Get in touch</Button>
+<Layout>
+	<a
+		href="#work"
+		class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:text-primary-foreground"
+	>
+		Saltar al contenido
+	</a>
+
+	<header class="sticky top-0 z-40 border-b border-border bg-background">
+		<div class="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
+			<a
+				href="/"
+				class="font-heading text-sm font-semibold tracking-[0.08em] uppercase outline-none focus-visible:rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+			>
+				EC.
+			</a>
+			<nav aria-label="Navegación principal" class="flex items-center gap-5 sm:gap-7">
+				<a href="#trayectoria" class="text-sm text-muted-foreground transition-colors duration-150 hover:text-foreground focus-visible:rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none">
+					Trayectoria
+				</a>
+				<a href="#work" class="text-sm text-muted-foreground transition-colors duration-150 hover:text-foreground focus-visible:rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none">
+					Trabajo
+				</a>
+				<a href="#contact" class="text-sm text-muted-foreground transition-colors duration-150 hover:text-foreground focus-visible:rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none">
+					Contacto
+				</a>
+				<ThemeToggle client:load />
+			</nav>
+		</div>
+	</header>
+
+	<main class="flex flex-col gap-16 pt-16 pb-24 select-none sm:gap-24 sm:pt-24 sm:pb-32">
+		<section aria-label="Presentación" class="mx-auto max-w-3xl px-6 select-text">
+			<div class="flex flex-col items-start gap-5">
+				<h1
+					class="hero-in text-4xl font-semibold tracking-tight [text-wrap:balance] sm:text-6xl"
+					style="animation-delay: 60ms;"
+				>
+					Esteban Colmenares.<br />Web y móvil, a producción.
+				</h1>
+				<p
+					class="hero-in max-w-prose text-base text-muted-foreground sm:text-lg"
+					style="animation-delay: 120ms;"
+				>
+					+3 años construyendo aplicaciones web y móviles con Angular, React, React Native y Flutter.
+					Desde Venezuela, hago producto real para los sectores educativo y domótica.
+				</p>
+				<div class="hero-in flex flex-wrap gap-3" style="animation-delay: 180ms;">
+					<Button href="#work">Ver proyectos</Button>
+					<Button variant="outline" href="#contact">Contacto</Button>
+				</div>
 			</div>
 		</section>
 
-		<section id="projects" class="mt-24 flex flex-col gap-6">
-			<div class="flex items-baseline justify-between">
-				<h2 class="text-2xl font-semibold tracking-tight">Selected work</h2>
-				<Button variant="link" href="/projects">All projects &rarr;</Button>
+		<section id="trayectoria" aria-labelledby="trayectoria-title" class="mx-auto max-w-3xl px-6 select-text">
+			<div class="flex flex-col gap-1">
+				<h2 id="trayectoria-title" class="text-xl font-semibold tracking-tight [text-wrap:balance] sm:text-2xl">
+					Trayectoria
+				</h2>
 			</div>
 
-			<div class="grid gap-6 sm:grid-cols-2">
-				<Card>
-					<CardHeader>
-						<CardTitle>Project Aurora</CardTitle>
-						<CardDescription>
-							A realtime dashboard for observability data.
-						</CardDescription>
-					</CardHeader>
-					<CardContent class="text-sm text-muted-foreground">
-						Built with React, WebSockets, and a custom canvas renderer for sub-frame
-						updates across thousands of metrics.
-					</CardContent>
-					<CardFooter class="gap-2">
-						<Badge>React</Badge>
-						<Badge variant="outline">WebSockets</Badge>
-						<Badge variant="secondary">Canvas</Badge>
-					</CardFooter>
-				</Card>
+			<ol class="mt-6 flex flex-col divide-y divide-border border-y border-border">
+				{
+					timeline.map((item) => (
+						<li class="flex flex-col gap-1.5 py-5 sm:flex-row sm:gap-6">
+							<span class="w-40 shrink-0 font-heading text-[11px] font-medium tracking-[0.08em] text-muted-foreground uppercase">
+								{item.period}
+							</span>
+							<div class="flex flex-col gap-1">
+								<h3 class="text-base font-semibold [text-wrap:balance]">{item.title}</h3>
+								{item.detail && (
+									<p class="text-sm leading-relaxed text-muted-foreground">{item.detail}</p>
+								)}
+							</div>
+						</li>
+					))
+				}
+			</ol>
 
-				<Card>
-					<CardHeader>
-						<CardTitle>Lumen</CardTitle>
-						<CardDescription>
-							A static-first documentation platform.
-						</CardDescription>
-					</CardHeader>
-					<CardContent class="text-sm text-muted-foreground">
-						Authored in MDX, compiled to static HTML, with an island architecture for
-						interactive code samples and live previews.
-					</CardContent>
-					<CardFooter class="gap-2">
-						<Badge>Astro</Badge>
-						<Badge variant="outline">MDX</Badge>
-						<Badge variant="secondary">TypeScript</Badge>
-					</CardFooter>
-				</Card>
+			<p class="mt-4 font-heading text-[11px] font-medium tracking-[0.08em] text-muted-foreground uppercase">
+				Idiomas · Español nativo · Inglés B2 · Francés B2
+			</p>
+		</section>
 
-				<Card>
-					<CardHeader>
-						<CardTitle>Atlas</CardTitle>
-						<CardDescription>
-							An offline-capable trip planner.
-						</CardDescription>
-					</CardHeader>
-					<CardContent class="text-sm text-muted-foreground">
-						Service worker, IndexedDB storage, and vector tile rendering make it fully
-						functional with no network connection.
-					</CardContent>
-					<CardFooter class="gap-2">
-						<Badge>PWA</Badge>
-						<Badge variant="outline">IndexedDB</Badge>
-						<Badge variant="secondary">Maps</Badge>
-					</CardFooter>
-				</Card>
+		<section id="work" aria-labelledby="work-title" class="mx-auto max-w-5xl px-6 select-text">
+			<div class="flex flex-col gap-1">
+				<h2 id="work-title" class="text-xl font-semibold tracking-tight [text-wrap:balance] sm:text-2xl">
+					Trabajo seleccionado
+				</h2>
+			</div>
 
-				<Card>
-					<CardHeader>
-						<CardTitle>Forge CLI</CardTitle>
-						<CardDescription>
-							A batteries-included build toolkit.
-						</CardDescription>
-					</CardHeader>
-					<CardContent class="text-sm text-muted-foreground">
-						Pluggable pipeline, smart caching, and first-class TypeScript support. Ships
-						a single binary with no runtime dependencies.
-					</CardContent>
-					<CardFooter class="gap-2">
-						<Badge>Rust</Badge>
-						<Badge variant="outline">CLI</Badge>
-						<Badge variant="secondary">Open source</Badge>
-					</CardFooter>
-				</Card>
+			<div class="mt-6 grid gap-6 sm:grid-cols-2">
+				{
+					projects.map((project) => (
+						<Card>
+							<CardHeader>
+								<CardTitle>{project.title}</CardTitle>
+								<CardDescription>{project.description}</CardDescription>
+							</CardHeader>
+							<CardContent class="-mt-3 text-sm leading-relaxed text-muted-foreground">
+								{project.detail}
+							</CardContent>
+							<CardFooter class="-mt-4 mt-auto gap-2 pb-6">
+								{project.stack.map((tech) => (
+									<Badge variant="outline">{tech}</Badge>
+								))}
+							</CardFooter>
+						</Card>
+					))
+				}
 			</div>
 		</section>
 
-		<section id="contact" class="mt-24 flex flex-col gap-4">
-			<h2 class="text-2xl font-semibold tracking-tight">Let's talk</h2>
-			<p class="max-w-xl text-muted-foreground">
-				Have a project in mind or just want to say hi? I'm always open to interesting work
-				and good conversations.
-			</p>
-			<div class="flex gap-3">
-				<Button href="mailto:hello@example.com">Email me</Button>
-				<Button variant="ghost" href="https://github.com" target="_blank" rel="noopener">
-					GitHub
-				</Button>
+		<section id="contact" aria-labelledby="contact-title" class="mx-auto max-w-3xl px-6 select-text">
+			<div class="flex flex-col items-start gap-4">
+				<h2 id="contact-title" class="text-xl font-semibold tracking-tight [text-wrap:balance] sm:text-2xl">
+					Hablemos
+				</h2>
+				<p class="max-w-prose text-sm text-muted-foreground sm:text-base">
+					¿Un producto web o móvil que construir, migrar o mejorar? Escríbeme.
+				</p>
+				<div class="flex flex-wrap items-center gap-x-4 gap-y-2">
+					<div class="flex flex-wrap gap-3">
+						<Button href="mailto:estebancode91@gmail.com">Escríbeme</Button>
+						<Button variant="ghost" href="https://github.com/estebancolmenares91" target="_blank" rel="noopener">
+							GitHub
+						</Button>
+						<Button variant="ghost" href="https://www.linkedin.com/in/esteban-augusto-colmenares-blanco/" target="_blank" rel="noopener">
+							LinkedIn
+						</Button>
+					</div>
+					<span class="font-heading text-[11px] font-medium tracking-[0.08em] text-muted-foreground uppercase">
+						Venezuela · UTC-4
+					</span>
+				</div>
 			</div>
 		</section>
 	</main>
+
+	<footer class="border-t border-border">
+		<div class="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
+			<p class="text-xs text-muted-foreground">
+				&copy; {year} Esteban Colmenares
+			</p>
+			<p class="text-xs text-muted-foreground">Hecho con Astro</p>
+		</div>
+	</footer>
 </Layout>
