@@ -154,6 +154,14 @@
   section[id] {
     scroll-margin-top: 5rem;
     }
+
+  .nav-link {
+    @apply text-sm text-muted-foreground underline underline-offset-4 decoration-[1.5px] decoration-transparent transition-colors duration-150 motion-reduce:transition-none hover:text-foreground hover:decoration-primary focus-visible:rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none;
+  }
+
+  .nav-link[aria-current='true'] {
+    @apply text-primary decoration-primary;
+  }
 }
 
 @keyframes rise-in {
@@ -167,6 +175,17 @@
 	}
 }
 
+@keyframes icon-in {
+	from {
+		opacity: 0;
+		transform: rotate(-90deg) scale(0.9);
+	}
+	to {
+		opacity: 1;
+		transform: rotate(0deg) scale(1);
+	}
+}
+
 @media (prefers-reduced-motion: no-preference) {
 	html {
 		scroll-behavior: smooth;
@@ -174,5 +193,15 @@
 
 	.hero-in {
 		animation: rise-in 0.4s ease-out both;
+	}
+
+	.icon-in {
+		animation: icon-in 0.15s ease-out;
+	}
+
+	::view-transition-old(root),
+	::view-transition-new(root) {
+		animation-duration: 180ms;
+		animation-timing-function: ease-out;
 	}
 }
