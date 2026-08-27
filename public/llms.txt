@@ -1,0 +1,29 @@
+# Esteban Colmenares - Desarrollador Web & Mobile
+
+> Desarrollador con +3 años de experiencia construyendo aplicaciones web y móviles para los sectores educativo y domótica. Especializado en Angular, React, React Native y Flutter.
+
+## Profile
+
+- [Portfolio](https://estebancolmenares.dev/): Trabajo seleccionado, trayectoria profesional y formas de contacto.
+
+## Experience
+
+- Full-stack Developer en DOMOTAI: Dashboard web y API en Node.js para gestión de inventario y clientela, con app móvil en Flutter.
+- Frontend & Mobile Developer en SERVIEDUCA: Portal universitario en Angular, app institucional en React Native + Expo (~35 MB a ~13 MB), módulo de inscripciones para +8.000 estudiantes por trimestre. Migración de Angular 16 a 21 con zoneless.
+
+## Skills
+
+- **Frontend:** Angular, React, TypeScript, Tailwind CSS
+- **Mobile:** React Native, Expo, Flutter
+- **Backend:** Node.js, API REST
+- **Tools:** Git, CI/CD, Figma
+
+## Contact
+
+- [GitHub](https://github.com/estebancolmenares91): Repositorios y proyectos open source.
+- [LinkedIn](https://www.linkedin.com/in/esteban-augusto-colmenares-blanco/): Perfil profesional y experiencia laboral.
+- Email: estebancode91@gmail.com
+
+## Optional
+
+- [Sitemap](https://estebancolmenares.dev/sitemap-index.xml): Mapa completo del sitio.

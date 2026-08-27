@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://estebancolmenares.dev/sitemap-index.xml
+
+# llms.txt: https://estebancolmenares.dev/llms.txt
