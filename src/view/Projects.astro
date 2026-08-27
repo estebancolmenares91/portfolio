@@ -1,0 +1,39 @@
+---
+import Card from '../components/Card.astro';
+import CardHeader from '../components/CardHeader.astro';
+import CardTitle from '../components/CardTitle.astro';
+import CardDescription from '../components/CardDescription.astro';
+import CardContent from '../components/CardContent.astro';
+import CardFooter from '../components/CardFooter.astro';
+import Badge from '../components/Badge.astro';
+import { projects } from './data';
+---
+
+<section id="work" aria-labelledby="work-title" class="mx-auto max-w-5xl px-6 select-text">
+  <div class="flex flex-col gap-1">
+    <h2 id="work-title" class="text-xl font-semibold tracking-tight [text-wrap:balance] sm:text-2xl">
+      Trabajo seleccionado
+    </h2>
+  </div>
+
+  <div class="mt-6 grid gap-6 sm:grid-cols-2">
+    {
+      projects.map((project) => (
+        <Card>
+          <CardHeader>
+            <CardTitle>{project.title}</CardTitle>
+            <CardDescription>{project.description}</CardDescription>
+          </CardHeader>
+          <CardContent class="-mt-3 text-sm leading-relaxed text-muted-foreground">
+            {project.detail}
+          </CardContent>
+          <CardFooter class="-mt-4 mt-auto gap-2 pb-6">
+            {project.stack.map((tech) => (
+              <Badge variant="outline">{tech}</Badge>
+            ))}
+          </CardFooter>
+        </Card>
+      ))
+    }
+  </div>
+</section>
