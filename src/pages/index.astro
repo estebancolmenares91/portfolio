@@ -7,11 +7,30 @@ import Timeline from '../view/Timeline.astro';
 import Projects from '../view/Projects.astro';
 import Contact from '../view/Contact.astro';
 import Footer from '../view/Footer.astro';
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Esteban Colmenares',
+  jobTitle: 'Desarrollador Web & Mobile',
+  url: 'https://estebancolmenares.dev',
+  sameAs: [],
+  knowsAbout: [
+    'Angular',
+    'React',
+    'React Native',
+    'Flutter',
+    'Web Development',
+    'Mobile Development',
+  ],
+};
 ---
 
 <Layout>
   <SkipLink />
   <Header />
+
+  <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
 
   <main class="flex flex-col gap-16 pt-16 pb-24 select-none sm:gap-24 sm:pt-24 sm:pb-32">
     <Hero />
