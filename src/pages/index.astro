@@ -36,7 +36,7 @@ const personSchema = {
 
   <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
 
-  <main class="flex flex-col gap-16 pt-16 pb-24 select-none sm:gap-24 sm:pt-24 sm:pb-32">
+  <main id="main" tabindex="-1" class="flex flex-col gap-16 pt-16 pb-24 select-none focus:outline-none sm:gap-24 sm:pt-24 sm:pb-32">
     <Hero />
     <Timeline />
     <Projects />
