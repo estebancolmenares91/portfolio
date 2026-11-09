@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SkipLink from '../view/SkipLink.astro';
+import Header from '../view/Header.astro';
+import Footer from '../view/Footer.astro';
+import Button from '../components/Button.astro';
+---
+
+<Layout
+  title="Página no encontrada — Esteban Colmenares"
+  description="La página que buscas no existe o cambió de sitio."
+  noindex
+>
+  <SkipLink />
+  <Header />
+
+  <main
+    id="main"
+    tabindex="-1"
+    class="mx-auto flex w-full max-w-3xl flex-col items-start gap-5 px-6 py-24 select-text focus:outline-none sm:py-32"
+  >
+    <p class="font-heading text-[11px] font-medium tracking-[0.08em] text-muted-foreground uppercase">
+      Error 404
+    </p>
+    <h1 class="text-4xl font-semibold tracking-tight [text-wrap:balance] sm:text-6xl">
+      Página no encontrada.
+    </h1>
+    <p class="max-w-prose text-base text-muted-foreground sm:text-lg">
+      El enlace que seguiste no existe o cambió de sitio.
+    </p>
+    <Button href="/" icon="arrow-right">Volver al inicio</Button>
+  </main>
+
+  <Footer />
+</Layout>

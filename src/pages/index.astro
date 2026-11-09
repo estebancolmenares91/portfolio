@@ -48,12 +48,12 @@ const personSchema = {
   <script>
     const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('.nav-link'));
     const sections = links
-      .map((link) => document.querySelector<HTMLElement>(link.getAttribute('href')!))
+      .map((link) => document.querySelector<HTMLElement>(link.hash))
       .filter((s): s is HTMLElement => s !== null);
 
     function setActive(id: string | null) {
       links.forEach((link) => {
-        if (link.getAttribute('href') === `#${id}`) {
+        if (link.hash === `#${id}`) {
           link.setAttribute('aria-current', 'true');
         } else {
           link.removeAttribute('aria-current');
