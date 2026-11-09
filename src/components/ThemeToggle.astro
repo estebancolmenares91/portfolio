@@ -1,0 +1,91 @@
+---
+const buttonClass =
+  'inline-flex size-11 shrink-0 items-center justify-center rounded-lg border border-border bg-background text-foreground transition-all motion-reduce:transition-none outline-none hover:bg-muted focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:translate-y-px';
+
+const iconClass =
+  'absolute size-4 transition-all duration-150 motion-reduce:transition-none';
+---
+
+<button
+  type="button"
+  data-theme-toggle
+  aria-label="Cambiar tema"
+  title="Cambiar tema"
+  class={buttonClass}
+>
+  <span class="relative inline-flex size-4 items-center justify-center" aria-hidden="true">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.9"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class={`${iconClass} rotate-0 scale-100 opacity-100 dark:-rotate-90 dark:scale-0 dark:opacity-0`}
+    >
+      <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401" />
+    </svg>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.9"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class={`${iconClass} -rotate-90 scale-0 opacity-0 dark:rotate-0 dark:scale-100 dark:opacity-100`}
+    >
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2" />
+      <path d="M12 20v2" />
+      <path d="m4.93 4.93 1.41 1.41" />
+      <path d="m17.66 17.66 1.41 1.41" />
+      <path d="M2 12h2" />
+      <path d="M20 12h2" />
+      <path d="m6.34 17.66-1.41 1.41" />
+      <path d="m19.07 4.93-1.41 1.41" />
+    </svg>
+  </span>
+</button>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+
+  if (button) {
+    const el = button;
+    const root = document.documentElement;
+
+    function updateLabel() {
+      const isDark = root.classList.contains('dark');
+      const label = isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro';
+      el.setAttribute('aria-label', label);
+      el.setAttribute('title', label);
+    }
+
+    el.addEventListener('click', () => {
+      const next = root.classList.contains('dark') ? 'light' : 'dark';
+
+      const apply = () => {
+        root.classList.toggle('dark', next === 'dark');
+        try {
+          localStorage.setItem('theme', next);
+        } catch {}
+        updateLabel();
+      };
+
+      const doc = document as Document & {
+        startViewTransition?: (callback: () => void) => unknown;
+      };
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (!reducedMotion && typeof doc.startViewTransition === 'function') {
+        doc.startViewTransition(apply);
+      } else {
+        apply();
+      }
+    });
+
+    updateLabel();
+  }
+</script>

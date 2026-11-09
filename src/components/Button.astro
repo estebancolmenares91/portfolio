@@ -1,7 +1,4 @@
 ---
-import { ArrowDown, ArrowRight, ArrowUpRight } from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
-
 type Variant = 'default' | 'outline' | 'secondary' | 'ghost' | 'destructive' | 'link';
 type Size = 'sm' | 'default' | 'lg' | 'icon';
 type IconName = 'arrow-down' | 'arrow-right' | 'arrow-up-right';
@@ -11,6 +8,8 @@ interface Props {
   size?: Size;
   href?: string;
   type?: 'button' | 'submit' | 'reset';
+  target?: '_blank' | '_self' | '_parent' | '_top';
+  rel?: string;
   icon?: IconName;
   class?: string;
 }
@@ -25,13 +24,15 @@ const {
   ...rest
 } = Astro.props;
 
-const icons: Record<IconName, LucideIcon> = {
-  'arrow-down': ArrowDown,
-  'arrow-right': ArrowRight,
-  'arrow-up-right': ArrowUpRight,
-};
+const iconBase = 'transition-transform duration-150 motion-reduce:transition-none';
+const svgAttrs =
+  'xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"';
 
-const Icon = icon ? icons[icon] : null;
+const icons: Record<IconName, string> = {
+  'arrow-down': `<svg ${svgAttrs} class="${iconBase} motion-safe:group-hover:translate-y-0.5"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>`,
+  'arrow-right': `<svg ${svgAttrs} class="${iconBase} motion-safe:group-hover:translate-x-0.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>`,
+  'arrow-up-right': `<svg ${svgAttrs} class="${iconBase} motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:-translate-y-0.5"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>`,
+};
 
 const base =
   'group inline-flex shrink-0 items-center justify-center gap-2 rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all motion-reduce:transition-none outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:translate-y-px disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*=\'size-\'])]:size-4';
@@ -62,12 +63,12 @@ const classes = `${base} ${variants[variant]} ${sizes[size]} ${className}`;
   href ? (
     <a href={href} class={classes} {...rest}>
       <slot />
-      {Icon && <Icon aria-hidden="true" strokeWidth={1.9} className="transition-transform duration-150 motion-reduce:transition-none motion-safe:group-hover:translate-y-0.5" />}
+      {icon && <Fragment set:html={icons[icon]} />}
     </a>
   ) : (
     <button type={type} class={classes} {...rest}>
       <slot />
-      {Icon && <Icon aria-hidden="true" strokeWidth={1.9} className="transition-transform duration-150 motion-reduce:transition-none motion-safe:group-hover:translate-y-0.5" />}
+      {icon && <Fragment set:html={icons[icon]} />}
     </button>
   )
 }

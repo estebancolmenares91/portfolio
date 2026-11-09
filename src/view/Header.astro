@@ -1,5 +1,5 @@
 ---
-import ThemeToggle from '../components/ThemeToggle';
+import ThemeToggle from '../components/ThemeToggle.astro';
 ---
 
 <header class="sticky top-0 z-40 border-b border-border bg-background">
@@ -10,17 +10,17 @@ import ThemeToggle from '../components/ThemeToggle';
     >
       EC.
     </a>
-    <nav aria-label="Navegación principal" class="flex items-center gap-5 sm:gap-7">
-      <a href="#trayectoria" class="nav-link">
+    <nav aria-label="Navegación principal" class="flex items-center gap-3 sm:gap-7">
+      <a href="/#trayectoria" class="nav-link">
         Trayectoria
       </a>
-      <a href="#work" class="nav-link">
+      <a href="/#work" class="nav-link">
         Trabajo
       </a>
-      <a href="#contact" class="nav-link">
+      <a href="/#contact" class="nav-link">
         Contacto
       </a>
-      <ThemeToggle client:load />
+      <ThemeToggle />
     </nav>
   </div>
 </header>
