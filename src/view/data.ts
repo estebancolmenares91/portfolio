@@ -34,7 +34,7 @@ export const timeline: { period: string; title: string; detail?: string }[] = [
     period: 'Dic 2025 — Hoy',
     title: 'Full-stack Developer · DOMOTAI',
     detail:
-      'Dashboard web y API en Node.js para gestión de inventario y clientela, con app móvil en Flutter.',
+      'Dashboard web y API en Node.js para gestión de inventario y clientela, con app móvil en Flutter. En paralelo con SERVIEDUCA hasta Ago 2026.',
   },
   {
     period: 'Feb 2023 — Ago 2026',
