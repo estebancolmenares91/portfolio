@@ -1,27 +1,28 @@
-# Esteban Colmenares - Desarrollador Web & Mobile
+# Esteban Colmenares - Desarrollador Full-stack Web y Móvil
 
-> Desarrollador con +3 años de experiencia construyendo aplicaciones web y móviles para los sectores educativo y domótica. Especializado en Angular, React, React Native y Flutter.
+> Desarrollador de software con 4 años de experiencia construyendo aplicaciones web y móviles en producción para los sectores educativo, fintech y domótica. Especializado en Angular, React, React Native (Expo), Flutter y Node.js. Desde Venezuela.
 
 ## Profile
 
-- [Portfolio](https://estebancolmenares.dev/): Trabajo seleccionado, trayectoria profesional y formas de contacto.
+- [Portfolio](https://estebancolmenares.dev/): Trayectoria, trabajo seleccionado y contacto.
 
 ## Experience
 
-- Full-stack Developer en DOMOTAI: Dashboard web y API en Node.js para gestión de inventario y clientela, con app móvil en Flutter.
-- Frontend & Mobile Developer en SERVIEDUCA: Portal universitario en Angular, app institucional en React Native + Expo (~35 MB a ~13 MB), módulo de inscripciones para +8.000 estudiantes por trimestre. Migración de Angular 16 a 21 con zoneless.
+- Full-stack Developer en DOMOTAI (Dic 2025 — Actualidad): plataforma de conciliación de crédito para motocicletas con onboarding KYC y scoring de riesgo por IA (dashboard y PWA en React.js, backend en Node.js) y app de ferretería con agente de IA (móvil en Flutter). Stack: React.js, Node.js, Flutter, TailwindCSS, TanStack Query.
+- Frontend & Mobile Developer en SERVIEDUCA (Feb 2023 — Ago 2026): portal universitario en Angular; app institucional URBE en React Native + Expo mantenida en solitario (rebranding con TailwindCSS, migración JS→TypeScript con −15 % de errores, caching con SWR, Expo Router, SDK 47→53, de ~40 MB a 14 MB, +10.000 descargas en Android y ~5.000 en iOS); módulo de inscripciones en Angular 16 para ~8.000 estudiantes por trimestre; sistema de preinscripciones con migración de Angular 16 a 21 con zoneless; app de tickets QR en React Native.
+- Ingeniería en Informática — Universidad Rafael Belloso Chacín (URBE). Título otorgado: Jun 2024.
 
 ## Skills
 
-- **Frontend:** Angular, React, TypeScript, Tailwind CSS
-- **Mobile:** React Native, Expo, Flutter
-- **Backend:** Node.js, API REST
-- **Tools:** Git, CI/CD, Figma
+- **Frontend:** Angular (16–21), React, TypeScript, TailwindCSS, PWA
+- **Mobile:** React Native, Expo (SDK 47–53), Expo Router, Flutter
+- **Backend:** Node.js, APIs REST
+- **Herramientas:** SWR, TanStack Query, Screaming Architecture, Squoosh/WebP, Git, Figma
 
 ## Contact
 
-- [GitHub](https://github.com/estebancolmenares91): Repositorios y proyectos open source.
-- [LinkedIn](https://www.linkedin.com/in/esteban-augusto-colmenares-blanco/): Perfil profesional y experiencia laboral.
+- [GitHub](https://github.com/estebancolmenares91): Repositorios y proyectos.
+- [LinkedIn](https://www.linkedin.com/in/esteban-augusto-colmenares-blanco/): Perfil profesional.
 - Email: estebancode91@gmail.com
 
 ## Optional

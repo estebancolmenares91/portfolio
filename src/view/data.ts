@@ -1,49 +1,57 @@
 export const projects = [
   {
-    title: 'App universitaria',
-    description: 'App móvil institucional (iOS y Android) para la comunidad universitaria.',
+    title: 'App móvil URBE',
+    description: 'App institucional de la universidad (iOS y Android), mantenida en solitario.',
     detail:
-      'Migrada de JS a TypeScript con Expo Router, SWR y migración de stylesheets a Tailwind en el rebranding. El binario bajó de ~35 MB a ~13 MB tras podar assets y dependencias.',
+      'La app bajó de ~40 MB a 14 MB y superó las 10.000 descargas en Android y ~5.000 en iOS. Se logró con rebranding completo, migración de JavaScript a TypeScript (−15 % de errores) y caching con SWR: un mismo endpoint pasó de 8 llamadas a 1.',
     stack: ['React Native', 'Expo', 'TypeScript'],
   },
   {
-    title: 'Inscripciones',
-    description: 'Módulo de inscripciones para +8.000 estudiantes por trimestre.',
+    title: 'Inscripciones URBE',
+    description: 'Módulo de inscripciones del sistema core de la universidad.',
     detail:
-      'Frontend en Angular 16 dentro de un sistema universitario grande, con equipos de QA y backend y decenas de puestos operando en paralelo sin conflictos.',
+      'Procesa cerca de 8.000 inscripciones por trimestre, para estudiantes nuevos y actuales, respetando las reglas de la universidad. Frontend en Angular 16, en colaboración con backend y QA.',
     stack: ['Angular', 'TypeScript'],
   },
   {
-    title: 'Tickets QR',
-    description: 'Control de acceso con QR para eventos privados de la universidad.',
+    title: 'Conciliación de crédito',
+    description: 'Financiamiento de motocicletas con scoring de riesgo por IA.',
     detail:
-      'Escaneo con cámara, verificación de la entrada y registro de consumo en el momento.',
-    stack: ['React Native', 'Expo', 'Tailwind'],
+      'Decide si un cliente puede recibir el préstamo según ingresos y capacidad de pago, aplicando reglas de negocio y mora por retraso. Incluye onboarding con recaudación de datos y verificación KYC. Dashboard y PWA en React.js con backend en Node.js.',
+    stack: ['React', 'Node.js', 'TailwindCSS'],
   },
   {
-    title: 'DOMOTAI',
-    description: 'Gestión de inventario y clientela para domótica.',
+    title: 'Ferretería con IA',
+    description: 'Compra de materiales de ferretería asistida por un agente de IA.',
     detail:
-      'Full stack: dashboard web, API en Node.js y app móvil en Flutter.',
-    stack: ['Flutter', 'Node.js', 'React'],
+      'Un agente de IA identifica la necesidad del cliente y recomienda productos según su objetivo. App móvil en Flutter y dashboard en React.js con backend en Node.js.',
+    stack: ['Flutter', 'React', 'Node.js'],
   },
 ];
 
-export const timeline: { period: string; title: string; detail?: string }[] = [
+export const timeline: {
+  period: string;
+  role: string;
+  org: string;
+  detail?: string;
+}[] = [
   {
     period: 'Dic 2025 — Hoy',
-    title: 'Full-stack Developer · DOMOTAI',
+    role: 'Full-stack Developer',
+    org: 'DOMOTAI',
     detail:
-      'Dashboard web y API en Node.js para gestión de inventario y clientela, con app móvil en Flutter. En paralelo con SERVIEDUCA hasta Ago 2026.',
+      'Dos productos en desarrollo: una plataforma de conciliación de crédito para motocicletas con onboarding KYC y scoring de riesgo por IA, y una app de ferretería con un agente de IA que recomienda productos según el objetivo del cliente. Full-stack con React.js, Node.js y Flutter. Medio tiempo.',
   },
   {
     period: 'Feb 2023 — Ago 2026',
-    title: 'Frontend & Mobile Developer · Servicios Educativos (SERVIEDUCA)',
+    role: 'Frontend & Mobile Developer',
+    org: 'Servicios Educativos (SERVIEDUCA)',
     detail:
-      'Producto universitario en web y móvil: portal responsivo en Angular, app institucional en React Native + Expo (migración a TS, rebranding, ~35 MB → ~13 MB) y módulo de inscripciones para +8.000 estudiantes por trimestre. Lideré la migración del sistema de preinscripciones de Angular 16 a 21 con zoneless.',
+      'Módulos de inscripciones y preinscripciones para ~8.000 estudiantes por trimestre, y una app institucional que bajó de ~40 MB a 14 MB con más de 10.000 descargas en Android. Portal en Angular y app mantenida en solitario en React Native + Expo; lideré la migración de preinscripciones de Angular 16 a 21 con zoneless.',
   },
   {
-    period: 'Hasta Nov 2023',
-    title: 'Ingeniería en Informática · Universidad Rafael Belloso Chacín (URBE)',
+    period: 'Título: Jun 2024',
+    role: 'Ingeniería en Informática',
+    org: 'Universidad Rafael Belloso Chacín (URBE)',
   },
 ];
