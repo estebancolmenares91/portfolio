@@ -4,12 +4,14 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  noindex?: boolean;
 }
 
 const {
-  title = 'Esteban Colmenares — Desarrollador Web & Mobile',
+  title = 'Esteban Colmenares — Desarrollador Full-stack Web y Móvil',
   description =
-    'Esteban Colmenares, desarrollador con +3 años construyendo apps web y móviles con Angular, React, React Native y Flutter.',
+    'Esteban Colmenares, desarrollador full-stack con 4 años de experiencia en Angular, React, React Native, Flutter y Node.js. Desde Venezuela.',
+  noindex = false,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -17,16 +19,22 @@ const ogImage = new URL('/og-image.png', Astro.site);
 ---
 
 <!doctype html>
-<html lang="es" suppressHydrationWarning>
+<html lang="es">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content={description} />
-		<meta name="robots" content="index, follow" />
+		<meta name="author" content="Esteban Colmenares" />
+		<meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+		<meta name="theme-color" content="#f9f8f6" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#13110f" media="(prefers-color-scheme: dark)" />
 		<link rel="canonical" href={canonicalURL} />
 		<link rel="sitemap" href="/sitemap-index.xml" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<link rel="preload" href="/fonts/Inter/Inter-Variable.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="/fonts/JetBrains_Mono/JetBrainsMono-Variable.woff2" as="font" type="font/woff2" crossorigin />
 		<meta name="generator" content={Astro.generator} />
 
 		<!-- Open Graph -->
@@ -35,6 +43,10 @@ const ogImage = new URL('/og-image.png', Astro.site);
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:image" content={ogImage} />
+		<meta property="og:image:type" content="image/png" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content="Esteban Colmenares — Desarrollador Full-stack Web y Móvil" />
 		<meta property="og:locale" content="es_ES" />
 		<meta property="og:site_name" content="Esteban Colmenares" />
 
@@ -43,6 +55,7 @@ const ogImage = new URL('/og-image.png', Astro.site);
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={ogImage} />
+		<meta name="twitter:image:alt" content="Esteban Colmenares — Desarrollador Full-stack Web y Móvil" />
 
 		<title>{title}</title>
 		<script is:inline>

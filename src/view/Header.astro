@@ -1,26 +1,26 @@
 ---
-import ThemeToggle from '../components/ThemeToggle';
+import ThemeToggle from '../components/ThemeToggle.astro';
 ---
 
 <header class="sticky top-0 z-40 border-b border-border bg-background">
-  <div class="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
+  <div class="mx-auto flex h-14 max-w-3xl items-center justify-between px-4 sm:px-6">
     <a
       href="/"
       class="font-heading text-sm font-semibold tracking-[0.08em] uppercase outline-none focus-visible:rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
     >
       EC.
     </a>
-    <nav aria-label="Navegación principal" class="flex items-center gap-5 sm:gap-7">
-      <a href="#trayectoria" class="nav-link">
+    <nav aria-label="Navegación principal" class="flex items-center gap-2 sm:gap-7">
+      <a href="/#trayectoria" class="nav-link">
         Trayectoria
       </a>
-      <a href="#work" class="nav-link">
+      <a href="/#work" class="nav-link">
         Trabajo
       </a>
-      <a href="#contact" class="nav-link">
+      <a href="/#contact" class="nav-link">
         Contacto
       </a>
-      <ThemeToggle client:load />
+      <ThemeToggle />
     </nav>
   </div>
 </header>

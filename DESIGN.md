@@ -1,7 +1,7 @@
 # DESIGN.md — Sistema de diseño del portafolio
 
 > Portafolio profesional de **Esteban Colmenares — Desarrollador Web & Mobile (+3 años)**.
-> Stack: Astro 7 · Tailwind v4 · tokens shadcn (base `neutral`) · React 19 · JetBrains Mono (títulos) + Inter (cuerpo).
+> Stack: Astro 7 · Tailwind v4 · tokens estilo shadcn (base `neutral`) · JetBrains Mono (títulos) + Inter (cuerpo).
 
 ---
 
@@ -129,7 +129,7 @@ Orden fijo, una sola página, navegación por anclas:
 
 ---
 
-## 6. Componentes (shadcn ya configurado, estilo `base-nova`)
+## 6. Componentes (Astro nativos)
 
 - **Button:** variantes permitidas: `default` (primario, acento), `outline`, `ghost`, `link`. Altura ≥ 40px, targets táctiles reales ≥ 44px. Hover: lightness +0.03 o fondo `--muted`. Transición `150ms`.
 - **Card:** `bg-card border border-border rounded-lg`. Padding interno 20–24px. Hover sutil: `border-foreground/20`. Sin elevación al hover.
@@ -137,7 +137,7 @@ Orden fijo, una sola página, navegación por anclas:
 - **ThemeToggle:** persiste en `localStorage`, respeta `prefers-color-scheme`, script inline anti-FOUC ya presente en `Layout.astro`.
 ### Iconos e imágenes
 
-- Iconos: **lucide-react**, simples y de trazo; heredan color con `currentColor`. Tamaño 16–20px.
+- Iconos: **SVG inline**, trazo simple estilo lucide; heredan color con `currentColor`. Tamaño 16–20px.
 - `stroke-width` cercano a **1.9** para iconos de acciones y navegación.
 - Iconos decorativos: `aria-hidden="true"`; iconos funcionales: `aria-label`.
 - Logos de lenguajes/tecnologías solo para **reforzar una sección concreta** (p. ej. Stack); nunca decorar sin propósito.
@@ -175,7 +175,7 @@ Orden fijo, una sola página, navegación por anclas:
 ## 9. SEO y performance
 
 - Cada página: `<title>` único, `meta description` ≤ 155 caracteres, Open Graph, favicon SVG.
-- Build estático (SSG de Astro): cero JS en el hero salvo el toggle de tema (islands mínimas).
+- Build estático (SSG de Astro): cero JS en el hero; solo un script mínimo para el toggle de tema.
 - Fuentes: subset local de JetBrains Mono + Inter (ideal convertir a WOFF2) con `font-display: swap`.
 - Objetivo Lighthouse: ≥ 95 en Performance, Accessibility, Best Practices y SEO.
 
@@ -192,7 +192,7 @@ Orden fijo, una sola página, navegación por anclas:
 | Glassmorphism / blur decorativo | Fondos sólidos |
 | Más de dos fuentes | JetBrains Mono (títulos) + Inter (cuerpo) |
 | Secciones full-screen / scrolljacking | Layout compacto de una columna |
-| Emojis como iconos de UI | lucide-react |
+| Emojis como iconos de UI | SVG inline de trazo |
 | Badges de estado/disponibilidad en el hero ("Available", "Open to work") | Texto plano en Contacto |
 | Badges decorativos sin dato real | Badges solo para el stack de cada proyecto (máx. 3 por card) |
 

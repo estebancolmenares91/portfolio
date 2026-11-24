@@ -1,16 +1,21 @@
 ---
-import { ArrowDown, ArrowRight, ArrowUpRight } from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
-
 type Variant = 'default' | 'outline' | 'secondary' | 'ghost' | 'destructive' | 'link';
 type Size = 'sm' | 'default' | 'lg' | 'icon';
-type IconName = 'arrow-down' | 'arrow-right' | 'arrow-up-right';
+type IconName =
+  | 'arrow-down'
+  | 'arrow-right'
+  | 'arrow-up-right'
+  | 'mail'
+  | 'github'
+  | 'linkedin';
 
 interface Props {
   variant?: Variant;
   size?: Size;
   href?: string;
   type?: 'button' | 'submit' | 'reset';
+  target?: '_blank' | '_self' | '_parent' | '_top';
+  rel?: string;
   icon?: IconName;
   class?: string;
 }
@@ -25,34 +30,39 @@ const {
   ...rest
 } = Astro.props;
 
-const icons: Record<IconName, LucideIcon> = {
-  'arrow-down': ArrowDown,
-  'arrow-right': ArrowRight,
-  'arrow-up-right': ArrowUpRight,
+const iconBase = 'transition-transform duration-150 motion-reduce:transition-none';
+const svgAttrs =
+  'xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"';
+
+const icons: Record<IconName, string> = {
+  'arrow-down': `<svg ${svgAttrs} class="${iconBase} motion-safe:group-hover:translate-y-0.5"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>`,
+  'arrow-right': `<svg ${svgAttrs} class="${iconBase} motion-safe:group-hover:translate-x-0.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>`,
+  'arrow-up-right': `<svg ${svgAttrs} class="${iconBase} motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:-translate-y-0.5"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>`,
+  mail: `<svg ${svgAttrs} class="${iconBase} size-3"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>`,
+  github: `<svg ${svgAttrs} class="${iconBase} size-3"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>`,
+  linkedin: `<svg ${svgAttrs} class="${iconBase} size-3"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>`,
 };
 
-const Icon = icon ? icons[icon] : null;
-
 const base =
-  'group inline-flex shrink-0 items-center justify-center gap-2 rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all motion-reduce:transition-none outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:translate-y-px disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*=\'size-\'])]:size-4';
+  'group inline-flex shrink-0 items-center justify-center gap-2 rounded-md border bg-clip-padding text-sm font-medium whitespace-nowrap transition-all motion-reduce:transition-none outline-none select-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:translate-y-px disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg]:self-center [&_svg:not([class*=\'size-\'])]:size-3.5';
 
 const variants: Record<Variant, string> = {
-  default: 'bg-primary text-primary-foreground hover:bg-primary/80',
+  default: 'border-transparent bg-primary text-primary-foreground hover:bg-primary/80',
   outline:
     'border-border bg-background hover:bg-muted hover:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50',
   secondary:
-    'bg-secondary text-secondary-foreground hover:bg-secondary/80',
-  ghost: 'hover:bg-muted hover:text-foreground dark:hover:bg-muted/50',
+    'border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80',
+  ghost: 'border-transparent hover:bg-muted hover:text-foreground dark:hover:bg-muted/50',
   destructive:
-    'bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40',
-  link: 'text-primary underline-offset-4 hover:underline',
+    'border-transparent bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40',
+  link: 'border-transparent text-primary underline-offset-4 hover:underline',
 };
 
 const sizes: Record<Size, string> = {
   sm: 'h-8 rounded-md px-3 text-xs',
-  default: 'h-10 px-5 py-2',
-  lg: 'h-10 rounded-md px-6',
-  icon: 'size-9',
+  default: 'h-11 px-5 py-2',
+  lg: 'h-11 rounded-md px-6',
+  icon: 'size-11',
 };
 
 const classes = `${base} ${variants[variant]} ${sizes[size]} ${className}`;
@@ -62,12 +72,12 @@ const classes = `${base} ${variants[variant]} ${sizes[size]} ${className}`;
   href ? (
     <a href={href} class={classes} {...rest}>
       <slot />
-      {Icon && <Icon aria-hidden="true" strokeWidth={1.9} className="transition-transform duration-150 motion-reduce:transition-none motion-safe:group-hover:translate-y-0.5" />}
+      {icon && <Fragment set:html={icons[icon]} />}
     </a>
   ) : (
     <button type={type} class={classes} {...rest}>
       <slot />
-      {Icon && <Icon aria-hidden="true" strokeWidth={1.9} className="transition-transform duration-150 motion-reduce:transition-none motion-safe:group-hover:translate-y-0.5" />}
+      {icon && <Fragment set:html={icons[icon]} />}
     </button>
   )
 }

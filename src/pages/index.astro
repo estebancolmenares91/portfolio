@@ -12,16 +12,30 @@ const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Esteban Colmenares',
-  jobTitle: 'Desarrollador Web & Mobile',
+  jobTitle: 'Desarrollador Full-stack Web y Móvil',
   url: 'https://estebancolmenares.dev',
-  sameAs: [],
+  email: 'mailto:estebancode91@gmail.com',
+  sameAs: [
+    'https://github.com/estebancolmenares91',
+    'https://www.linkedin.com/in/esteban-augusto-colmenares-blanco/',
+  ],
+  alumniOf: {
+    '@type': 'CollegeOrUniversity',
+    name: 'Universidad Rafael Belloso Chacín (URBE)',
+  },
+  knowsLanguage: ['Español', 'Inglés', 'Francés'],
   knowsAbout: [
     'Angular',
     'React',
     'React Native',
+    'Expo',
     'Flutter',
+    'Node.js',
+    'TypeScript',
+    'TailwindCSS',
     'Web Development',
     'Mobile Development',
+    'Full-stack Development',
   ],
 };
 ---
@@ -32,7 +46,7 @@ const personSchema = {
 
   <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
 
-  <main class="flex flex-col gap-16 pt-16 pb-24 select-none sm:gap-24 sm:pt-24 sm:pb-32">
+  <main id="main" tabindex="-1" class="flex flex-col gap-16 pt-16 pb-24 select-none focus:outline-none sm:gap-24 sm:pt-24 sm:pb-32">
     <Hero />
     <Timeline />
     <Projects />
@@ -44,12 +58,12 @@ const personSchema = {
   <script>
     const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('.nav-link'));
     const sections = links
-      .map((link) => document.querySelector<HTMLElement>(link.getAttribute('href')!))
+      .map((link) => document.querySelector<HTMLElement>(link.hash))
       .filter((s): s is HTMLElement => s !== null);
 
     function setActive(id: string | null) {
       links.forEach((link) => {
-        if (link.getAttribute('href') === `#${id}`) {
+        if (link.hash === `#${id}`) {
           link.setAttribute('aria-current', 'true');
         } else {
           link.removeAttribute('aria-current');
