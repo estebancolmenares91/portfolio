@@ -1,0 +1,19 @@
+// Cloudflare Workers configuration for a fully static Astro site.
+// https://developers.cloudflare.com/workers/framework-guides/web-apps/astro/#if-you-have-a-static-site
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "portfolio",
+  "compatibility_date": "2026-11-24",
+  "assets": {
+    "directory": "./dist",
+    // Serves src/pages/404.astro (dist/404.html) for unknown routes.
+    "not_found_handling": "404-page"
+  },
+  // Custom domains: Cloudflare creates the DNS records, proxying and TLS
+  // certificate for the zone. The zone must live in the same account.
+  // www is intentionally absent: redirect it to the apex domain with a
+  // Cloudflare Redirect Rule so the site is only served on one hostname.
+  "routes": [
+    { "pattern": "estebancolmenares.dev", "custom_domain": true }
+  ]
+}
