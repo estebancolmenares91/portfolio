@@ -4,6 +4,7 @@ on:
   push:
     branches: [main, master, develop]
   pull_request:
+  workflow_dispatch:
 
 jobs:
   build:
@@ -17,3 +18,9 @@ jobs:
       - run: npm ci
       - run: npm run check
       - run: npm run build
+      - name: Deploy to Cloudflare
+        if: (github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')) || github.event_name == 'workflow_dispatch'
+        run: npx wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
