@@ -18,6 +18,7 @@ npm run dev       # servidor de desarrollo en localhost:4321
 npm run check     # type-check de Astro/TypeScript
 npm run build     # genera el sitio en dist/
 npm run preview   # sirve dist/ localmente
+npm run deploy    # build + wrangler deploy a Cloudflare
 ```
 
 ## Estructura
@@ -68,9 +69,32 @@ Si añades idiomas o glifos nuevos, regenera los WOFF2 con `pyftsubset` (fonttoo
 2. `npm run check`
 3. `npm run build`
 
+En cada push a `main` (o al lanzarlo manualmente con `workflow_dispatch`) añade un paso `npx wrangler deploy`. Requiere los secretos `CLOUDFLARE_API_TOKEN` y `CLOUDFLARE_ACCOUNT_ID` en el repositorio. El token necesita permisos de *Workers Scripts: Edit*, *Workers Routes: Edit*, *DNS: Edit* y *Zone: Read* sobre la zona.
+
 ## Despliegue
 
-El resultado es completamente estático: publica el contenido de `dist/` en cualquier hosting (Vercel, Netlify, GitHub Pages, Cloudflare Pages, etc.).
+El sitio son assets estáticos publicados en **Cloudflare Workers**. La configuración está en `wrangler.jsonc`:
+
+- `assets.directory`: `./dist`.
+- `assets.not_found_handling`: `404-page`, que sirve `dist/404.html` en rutas desconocidas.
+- `routes`: el dominio `estebancolmenares.dev` como custom domain (Cloudflare crea el DNS y el certificado).
+
+Despliegue manual:
+
+```sh
+npm run deploy
+```
+
+`www.estebancolmenares.dev` no se sirve como alias porque duplicaría el contenido: redirígelo con una Redirect Rule 301 al dominio sin `www` (y crea el registro DNS proxied que la regla necesite).
+
+## Lanzamiento
+
+- [ ] Una ruta inexistente devuelve el 404 propio.
+- [ ] `https://www.estebancolmenares.dev/*` redirige al dominio principal.
+- [ ] Dominio dado de alta en Google Search Console, con `sitemap-index.xml` enviado.
+- [ ] Dominio dado de alta en Bing Webmaster Tools.
+- [ ] Tarjeta social verificada en opengraph.xyz.
+- [ ] Cloudflare Web Analytics activo.
 
 ## Licencias
 
