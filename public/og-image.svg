@@ -4,9 +4,11 @@
   <text x="108" y="121" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="34" font-weight="700" fill="#13110f">EC.</text>
 
   <text x="72" y="300" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="72" font-weight="700" fill="#e9e8e5">Esteban Colmenares.</text>
-  <text x="72" y="382" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="44" font-weight="500" fill="#93b8a3">Web y móvil, a producción.</text>
-  <text x="72" y="474" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="28" fill="#9c9890">Angular · React · React Native · Flutter</text>
+  <text x="72" y="378" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="40" font-weight="500" fill="#93b8a3">Desarrollador full-stack con 4 años</text>
+  <text x="72" y="424" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="40" font-weight="500" fill="#93b8a3">de experiencia. Desde Venezuela.</text>
+  <text x="72" y="496" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="28" fill="#9c9890">Angular · React · React Native · Flutter</text>
 
-  <line x1="72" y1="540" x2="1128" y2="540" stroke="#302e29" stroke-width="2"/>
-  <text x="72" y="584" font-family="ui-monospace, Consolas, monospace" font-size="20" fill="#9c9890">estebancolmenares.dev</text>
+  <line x1="72" y1="548" x2="1128" y2="548" stroke="#302e29" stroke-width="2"/>
+  <text x="72" y="592" font-family="ui-monospace, Consolas, monospace" font-size="20" fill="#9c9890">estebancolmenares.dev</text>
+  <text x="1128" y="592" text-anchor="end" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="22" fill="#93b8a3">Hablemos de tu proyecto →</text>
 </svg>
