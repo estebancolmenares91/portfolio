@@ -61,15 +61,16 @@ Las fuentes desplegadas son subsets WOFF2 en `public/fonts/`. Los TTF completos 
 
 Si añades idiomas o glifos nuevos, regenera los WOFF2 con `pyftsubset` (fonttools) usando un rango Unicode que incluya los caracteres necesarios.
 
-## CI
+## CI y despliegue
 
-`.github/workflows/ci.yml` ejecuta en cada push/PR:
+El despliegue lo gestiona **Cloudflare Workers Builds**, conectado al repositorio de GitHub. No hay GitHub Actions ni secretos de Cloudflare en GitHub.
 
-1. `npm ci`
-2. `npm run check`
-3. `npm run build`
+- Rama de producción: `main`. Cada push compila y publica automáticamente.
+- Build command: `npm run check && npm run build`.
+- Deploy command: `npx wrangler deploy`.
+- Los push a otras ramas no publican.
 
-En cada push a `main` (o al lanzarlo manualmente con `workflow_dispatch`) añade un paso `npx wrangler deploy`. Requiere los secretos `CLOUDFLARE_API_TOKEN` y `CLOUDFLARE_ACCOUNT_ID` en el repositorio. El token necesita permisos de *Workers Scripts: Edit*, *Workers Routes: Edit*, *DNS: Edit* y *Zone: Read* sobre la zona.
+La configuración del build vive en el dashboard (*Workers & Pages* → `portfolio` → *Settings* → *Build*), no en el repositorio.
 
 ## Despliegue
 
@@ -79,7 +80,7 @@ El sitio son assets estáticos publicados en **Cloudflare Workers**. La configur
 - `assets.not_found_handling`: `404-page`, que sirve `dist/404.html` en rutas desconocidas.
 - `routes`: el dominio `estebancolmenares.dev` como custom domain (Cloudflare crea el DNS y el certificado).
 
-Despliegue manual:
+Despliegue manual, solo como respaldo:
 
 ```sh
 npm run deploy
