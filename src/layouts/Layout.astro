@@ -8,9 +8,9 @@ interface Props {
 }
 
 const {
-  title = 'Esteban Colmenares — Desarrollador Full-stack Web y Móvil',
+  title = 'Desarrollador Full-stack Web y Móvil | Esteban Colmenares',
   description =
-    'Desarrollador full-stack con 4 años de experiencia en Angular, React, React Native, Flutter y Node.js. Desde Venezuela.',
+    'Desarrollador web y móvil desde Venezuela: 4 años creando productos para educación, fintech y domótica con Angular, React, React Native, Flutter y Node.js.',
   noindex = false,
 } = Astro.props;
 
@@ -19,14 +19,14 @@ const ogImage = new URL('/og-image.png', Astro.site);
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es-VE">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content={description} />
 		<meta name="author" content="Esteban Colmenares" />
 		<meta name="msvalidate.01" content="4086AD2BC546C895CDFC8D14FF58D272" />
-		<meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+		<meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'} />
 		<meta name="theme-color" content="#f9f8f6" media="(prefers-color-scheme: light)" />
 		<meta name="theme-color" content="#13110f" media="(prefers-color-scheme: dark)" />
 		<link rel="canonical" href={canonicalURL} />
@@ -48,7 +48,7 @@ const ogImage = new URL('/og-image.png', Astro.site);
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
 		<meta property="og:image:alt" content="Esteban Colmenares — Desarrollador Full-stack Web y Móvil" />
-		<meta property="og:locale" content="es_ES" />
+		<meta property="og:locale" content="es_VE" />
 		<meta property="og:site_name" content="Esteban Colmenares" />
 
 		<!-- Twitter Card -->
